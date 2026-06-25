@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+
+# VS Code
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# Optional
+.idea/
+.DS_Store
+Thumbs.db
