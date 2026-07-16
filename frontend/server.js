@@ -11,12 +11,11 @@ app.post("/submit", async (req, res) => {
 
     try {
         const response = await axios.post(
-            //"http://127.0.0.1:5000/submit",
-            "http://backend:5000/submit",
-            new URLSearchParams(req.body),
+            "http://flask-backend-service:5000/submit",
+            req.body,
             {
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
                 }
             }
         );
