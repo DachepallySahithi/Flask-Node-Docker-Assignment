@@ -5,13 +5,17 @@ const path = require("path");
 const axios = require("axios");
 const app = express();
 
+const BACKEND_URL =
+    process.env.BACKEND_URL || "http://localhost:5000/submit";
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
 app.post("/submit", async (req, res) => {
 
     try {
         const response = await axios.post(
-            "http://flask-backend-service:5000/submit",
+            BACKEND_URL,
             req.body,
             {
                 headers: {
@@ -21,7 +25,10 @@ app.post("/submit", async (req, res) => {
         );
 
         console.log(response.data);
-        res.sendFile(path.join(__dirname, "public", "success.html"));
+
+        res.sendFile(
+            path.join(__dirname, "public", "success.html")
+        );
 
     } catch (error) {
         console.log(error.message);
@@ -30,6 +37,7 @@ app.post("/submit", async (req, res) => {
 });
 
 const PORT = 3000;
+
 app.listen(PORT, () => {
     console.log(`Frontend running on port ${PORT}`);
 });
